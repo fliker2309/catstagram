@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/PrivateRepoRS.iml" filepath="$PROJECT_DIR$/.idea/PrivateRepoRS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android.task5.network.iml" filepath="$PROJECT_DIR$/.idea/modules/android.task5.network.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.task5.network.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.task5.network.app.iml" />
     </modules>
   </component>
 </project>
