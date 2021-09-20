@@ -13,11 +13,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cats_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:paddingStart="@dimen/card_dimen"
             android:paddingTop="@dimen/card_dimen"
             android:paddingEnd="@dimen/card_dimen"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
