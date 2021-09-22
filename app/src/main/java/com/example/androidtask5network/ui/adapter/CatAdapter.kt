@@ -11,7 +11,7 @@ import com.example.androidtask5network.databinding.RecyclerItemBinding
 
 class CatAdapter : RecyclerView.Adapter<CatAdapter.CatsViewHolder>() {
 
-    var cats: List<Cat> = emptyList()
+    var catoes: List<Cat> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
         set(newValue) {
             field = newValue
@@ -26,7 +26,7 @@ class CatAdapter : RecyclerView.Adapter<CatAdapter.CatsViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CatsViewHolder, position: Int) {
-        val cat = cats[position]
+        val cat = catoes[position]
         with(holder.binding) {
             Glide.with(catImage.context)
                 .load(cat.photo)
@@ -36,7 +36,7 @@ class CatAdapter : RecyclerView.Adapter<CatAdapter.CatsViewHolder>() {
         }
     }
 
-    override fun getItemCount(): Int = cats.size
+    override fun getItemCount(): Int = catoes.size
 
     class CatsViewHolder(val binding: RecyclerItemBinding) : RecyclerView.ViewHolder(binding.root) {
 

@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.androidtask5network.data.entity.Cat
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CatDao  {

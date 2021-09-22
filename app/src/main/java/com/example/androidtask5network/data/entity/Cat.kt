@@ -7,10 +7,9 @@ import kotlinx.serialization.SerialName
 
 @Entity(tableName = "cats")
 data class Cat(
-    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     @SerialName("id")
-    val id: Long = 0,
+    val id: String,
 
     @ColumnInfo(name = "photo")
     @SerialName("photo")
