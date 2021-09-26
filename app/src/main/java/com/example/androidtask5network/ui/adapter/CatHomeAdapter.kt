@@ -30,7 +30,6 @@ class CatHomeAdapter : PagingDataAdapter<Cat, CatHomeAdapter.CatsViewHolder>(Cat
                 catImage.load(cat?.urlToImage) {
                     placeholder(R.drawable.ic_placeholder)
                     error(R.drawable.ic_placeholder)
-                    //transformations(CircleCropTransformation())
                 }
             }
         }
