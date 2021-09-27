@@ -5,10 +5,28 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30"
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31'
+        classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5'
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+/*
+
+plugins{
+    id "io.gitlab.arturbosch.detekt" version "1.10.0"
+}
+
+detekt {
+    toolVersion = "1.10.0"
+    config = files("config/detekt/detekt.yml")
+    buildUponDefaultConfig = true
+    failFast = true
+
+    input = files("app/src/main/java", "app/src/main/kotlin")
+
+}
+tastks.detekt.jvmTarget = "1.8"
+*/

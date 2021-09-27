@@ -48,7 +48,8 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         val adapter = CatsAdapter{
-         /*   findNavController().navigate(R.id.action_mainFragment_to_detailsFragment)*/
+            val action = MainFragmentDirections.actionMainFragmentToDetailsFragment(it.id)
+            this.findNavController().navigate(action)
         }
 
         binding.apply {
