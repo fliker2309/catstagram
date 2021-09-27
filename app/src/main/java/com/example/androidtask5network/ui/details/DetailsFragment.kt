@@ -12,12 +12,8 @@ class DetailsFragment : Fragment() {
     private val _binding: FragmentDetailsBinding? = null
     private val binding: FragmentDetailsBinding
         get() = requireNotNull(_binding)
-
-
     private val args by navArgs<DetailsFragmentArgs>()
-
     private val viewModel: MainViewModel by viewModels {
         MainViewModelFactory()
     }
-
 }

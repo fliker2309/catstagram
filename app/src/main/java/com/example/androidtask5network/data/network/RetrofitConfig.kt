@@ -9,7 +9,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.create
 
-
 object RetrofitConfig {
 
     private val json = Json {
@@ -36,5 +35,4 @@ object RetrofitConfig {
         .build()
 
     val theCatApiService: TheCatApiService = retrofitBuilder.create()
-
 }

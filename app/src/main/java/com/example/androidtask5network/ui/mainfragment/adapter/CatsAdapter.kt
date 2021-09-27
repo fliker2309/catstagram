@@ -27,7 +27,6 @@ class CatsAdapter(private val cardListener: (Cat) -> Unit) :
         holder.bind(getItem(position))
     }
 
-
     class CatsViewHolder(private val binding: RecyclerItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(cat: Cat?) {
@@ -49,5 +48,4 @@ class CatsAdapter(private val cardListener: (Cat) -> Unit) :
             return oldItem.id == newItem.id && oldItem.url == newItem.url
         }
     }
-
 }

@@ -26,13 +26,15 @@ Vapp/src/main/java/com/example/androidtask5network/presetnation/MainViewModelFac
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-<
-build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-
-Oapp/src/main/java/com/example/androidtask5network/presetnation/MainViewModel.kt,c\6\c6fd3820cac536dd34114ec7be35b5f16c4914d0
-
-Oapp/src/main/java/com/example/androidtask5network/ui/details/DetailsFragment.kt,2\b\2b46d210d67d4dccf08ff97cb16c389aa2edd01a
 
 Qapp/src/main/java/com/example/androidtask5network/ui/mainfragment/MainFragment.kt,3\a\3a804797cc057cc1876db9c9e253189a6c5160af
+=
+.editorconfig,6\2\626a747c8694eaae66f2afb3d1a745b045782c70
+
+Oapp/src/main/java/com/example/androidtask5network/presetnation/MainViewModel.kt,c\6\c6fd3820cac536dd34114ec7be35b5f16c4914d0
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+
+Oapp/src/main/java/com/example/androidtask5network/ui/details/DetailsFragment.kt,2\b\2b46d210d67d4dccf08ff97cb16c389aa2edd01a
