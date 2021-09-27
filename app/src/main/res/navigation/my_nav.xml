@@ -14,10 +14,13 @@
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.androidtask5network.ui.detailsfragment.DetailsFragment"
+        android:name="com.example.androidtask5network.ui.details.DetailsFragment"
         android:label="Simple Kitty" >
         <action
             android:id="@+id/action_detailsFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <argument
+            android:name="imageid"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.androidtask5network.network
+package com.example.androidtask5network.data.network
 
 import com.example.androidtask5network.utils.BASE_URL
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -8,7 +8,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.create
-import java.util.concurrent.TimeUnit
 
 
 object RetrofitConfig {
@@ -25,7 +24,7 @@ object RetrofitConfig {
     private val contentType = "application/json".toMediaType()
 
     private val httpClient = OkHttpClient.Builder()
-        .addInterceptor(ApiKeyInterceptor())
+        .addInterceptor(AuthInterceptor())
         .addInterceptor(loggingInterceptor)
         .addNetworkInterceptor(loggingInterceptor)
         .build()
@@ -37,6 +36,5 @@ object RetrofitConfig {
         .build()
 
     val theCatApiService: TheCatApiService = retrofitBuilder.create()
-
 
 }

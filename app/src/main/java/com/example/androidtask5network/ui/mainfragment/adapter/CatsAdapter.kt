@@ -1,4 +1,4 @@
-package com.example.androidtask5network.ui.adapter
+package com.example.androidtask5network.ui.mainfragment.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,12 +10,17 @@ import com.example.androidtask5network.R
 import com.example.androidtask5network.data.model.Cat
 import com.example.androidtask5network.databinding.RecyclerItemBinding
 
-class CatHomeAdapter : PagingDataAdapter<Cat, CatHomeAdapter.CatsViewHolder>(CatDiffItemCallback) {
+class CatsAdapter(private val cardListener: (Cat) -> Unit) :
+    PagingDataAdapter<Cat, CatsAdapter.CatsViewHolder>(CatDiffItemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatsViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = RecyclerItemBinding.inflate(inflater, parent, false)
-        return CatsViewHolder(binding)
+        val viewHolder =
+            CatsViewHolder(RecyclerItemBinding.inflate(LayoutInflater.from(parent.context)))
+        viewHolder.itemView.setOnClickListener {
+            val position = viewHolder.bindingAdapterPosition
+            getItem(position)?.let { position -> cardListener(position) }
+        }
+        return viewHolder
     }
 
     override fun onBindViewHolder(holder: CatsViewHolder, position: Int) {
@@ -27,7 +32,7 @@ class CatHomeAdapter : PagingDataAdapter<Cat, CatHomeAdapter.CatsViewHolder>(Cat
         RecyclerView.ViewHolder(binding.root) {
         fun bind(cat: Cat?) {
             with(binding) {
-                catImage.load(cat?.urlToImage) {
+                catImage.load(cat?.url) {
                     placeholder(R.drawable.ic_placeholder)
                     error(R.drawable.ic_placeholder)
                 }
@@ -41,10 +46,8 @@ class CatHomeAdapter : PagingDataAdapter<Cat, CatHomeAdapter.CatsViewHolder>(Cat
         }
 
         override fun areContentsTheSame(oldItem: Cat, newItem: Cat): Boolean {
-            return oldItem.id == newItem.id && oldItem.urlToImage == newItem.urlToImage
+            return oldItem.id == newItem.id && oldItem.url == newItem.url
         }
-
     }
-
 
 }
