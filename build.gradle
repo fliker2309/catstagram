@@ -10,23 +10,26 @@ buildscript {
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
-/*
 
-plugins{
-    id "io.gitlab.arturbosch.detekt" version "1.10.0"
+
+plugins {
+    id("io.gitlab.arturbosch.detekt").version("1.18.1")
 }
 
 detekt {
     toolVersion = "1.10.0"
     config = files("config/detekt/detekt.yml")
     buildUponDefaultConfig = true
-    failFast = true
 
-    input = files("app/src/main/java", "app/src/main/kotlin")
-
+    reports {
+        html {
+            enabled = true
+            destination = file("app/build/detekt/detekt.html")
+        }
+    }
 }
-tastks.detekt.jvmTarget = "1.8"
-*/
+tasks.detekt.jvmTarget = "1.8"
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
