@@ -8,8 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.androidtask5network.databinding.FragmentCatsBinding
 import com.example.androidtask5network.presetnation.MainViewModel
 import com.example.androidtask5network.presetnation.MainViewModelFactory
@@ -27,6 +26,7 @@ class MainFragment : Fragment() {
     private val viewModel: MainViewModel by viewModels {
         MainViewModelFactory()
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,7 +47,8 @@ class MainFragment : Fragment() {
 
         binding.apply {
             catsRecyclerView.adapter = adapter
-            catsRecyclerView.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+            catsRecyclerView.layoutManager =
+                GridLayoutManager(activity, 2)
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
