@@ -1,6 +1,5 @@
 package com.example.androidtask5network.data.network
 
-import com.example.androidtask5network.data.model.Cat
 import com.example.androidtask5network.data.network.model.CatResponse
 import com.example.androidtask5network.utils.DEFAULT_PAGE_SIZE
 import retrofit2.http.GET
@@ -16,5 +15,5 @@ interface TheCatApiService {
     ): List<CatResponse>
 
     @GET("images/{image_id}")
-    suspend fun getCatById(@Path("image_id") id: String): Cat
+    suspend fun getCatById(@Path("image_id") id: String): CatResponse
 }

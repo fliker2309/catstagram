@@ -13,7 +13,6 @@ import com.example.androidtask5network.databinding.FragmentCatsBinding
 import com.example.androidtask5network.presetnation.MainViewModel
 import com.example.androidtask5network.presetnation.MainViewModelFactory
 import com.example.androidtask5network.ui.mainfragment.adapter.CatsAdapter
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -53,7 +52,7 @@ class MainFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.flow.collectLatest { pagingData ->
-                coroutineScope { adapter.submitData(pagingData) }
+                adapter.submitData(pagingData)
             }
         }
 
