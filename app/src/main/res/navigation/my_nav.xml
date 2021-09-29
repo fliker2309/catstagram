@@ -20,7 +20,7 @@
             android:id="@+id/action_detailsFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
         <argument
-            android:name="imageid"
+            android:name="imageId"
             app:argType="string" />
     </fragment>
 </navigation>
