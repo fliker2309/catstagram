@@ -4,21 +4,26 @@ import android.content.ContentValues
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import coil.imageLoader
-import coil.request.ImageRequest
+import coil.load
 import com.example.androidtask5network.R
 import com.example.androidtask5network.data.model.Cat
 import com.example.androidtask5network.databinding.FragmentDetailsBinding
 import com.example.androidtask5network.presetnation.MainViewModel
 import com.example.androidtask5network.presetnation.MainViewModelFactory
+import com.example.androidtask5network.utils.TAG
 import com.example.androidtask5network.utils.sdk29AndUp
 import java.io.IOException
 
@@ -43,30 +48,47 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
 
-        val catId = args.imageid
-        viewModel.getCat(catId)
-        viewModel.cat.observe(this.viewLifecycleOwner) {
-            setImage(binding.cropCatImage, it)
-        }
-
-        binding.saveButton.setOnClickListener {
-            val cat = viewModel.cat.value!!
-            val bitmap: Bitmap = binding.cropCatImage.drawable.toBitmap()
-            saveImageToExternalStorage(cat, bitmap)
+        binding.apply {
+            val catId = args.imageId
+            viewModel.getCat(catId)
+            viewModel.cat.observe(viewLifecycleOwner) {
+                Log.d(TAG, "Single cat url: ${it.url}")
+                setImage(binding.cropCatImage, it)
+                binding.urlTextView.text = getString(R.string.cat_url, it.url)
+            }
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.save_cat_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.save_button -> {
+                val cat = viewModel.cat.value
+                val bitmap: Bitmap = binding.cropCatImage.drawable.toBitmap()
+                cat?.let { cat ->
+                    saveImageToExternalStorage(cat, bitmap)
+                    Toast.makeText(requireContext(), "Successful saved", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun setImage(imageView: ImageView, cat: Cat) {
-        val request = ImageRequest.Builder(requireContext())
-            .data(cat.url)
-            .size(1000, 1000)
-            .placeholder(R.drawable.ic_placeholder)
-            .error(R.drawable.ic_error)
-            .target(imageView)
-            .allowHardware(false)
-            .build()
-        requireContext().imageLoader.enqueue(request)
+        with(binding) {
+            cropCatImage.load(cat.url) {
+                placeholder(R.drawable.ic_placeholder)
+                error(R.drawable.ic_error)
+                size(1000, 1000)
+                target(imageView)
+                allowHardware(false)
+            }
+        }
     }
 
     private fun saveImageToExternalStorage(cat: Cat, bitmap: Bitmap): Boolean {
@@ -80,8 +102,6 @@ class DetailsFragment : Fragment() {
         val contentValues = ContentValues().apply {
             put(MediaStore.Images.Media.DISPLAY_NAME, "${cat.id}.jpeg")
             put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
-            put(MediaStore.Images.Media.WIDTH, bitmap.width)
-            put(MediaStore.Images.Media.HEIGHT, bitmap.height)
         }
         return try {
             resolver?.insert(imageCollection, contentValues)?.also { uri ->
