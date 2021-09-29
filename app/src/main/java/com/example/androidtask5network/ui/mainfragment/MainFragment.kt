@@ -8,8 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.androidtask5network.data.model.Cat
 import com.example.androidtask5network.databinding.FragmentCatsBinding
 import com.example.androidtask5network.presetnation.MainViewModel
 import com.example.androidtask5network.presetnation.MainViewModelFactory
@@ -27,6 +30,7 @@ class MainFragment : Fragment() {
     private val viewModel: MainViewModel by viewModels {
         MainViewModelFactory()
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,12 +51,20 @@ class MainFragment : Fragment() {
 
         binding.apply {
             catsRecyclerView.adapter = adapter
-            catsRecyclerView.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+            catsRecyclerView.layoutManager =
+                StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.flow.collectLatest { pagingData ->
+            viewModel.flow.collectLatest { pagingData: PagingData<Cat> ->
                 coroutineScope { adapter.submitData(pagingData) }
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            adapter.loadStateFlow.collectLatest {
+                if (it.append is LoadState.Error) {
+                    adapter.retry()
+                }
             }
         }
 
