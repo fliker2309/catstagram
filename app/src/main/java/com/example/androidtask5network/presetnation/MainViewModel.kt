@@ -12,9 +12,10 @@ import com.example.androidtask5network.data.model.Cat
 import com.example.androidtask5network.data.network.CatsPagingSource
 import com.example.androidtask5network.data.network.RetrofitConfig.theCatApiService
 import com.example.androidtask5network.data.toCat
-import com.example.androidtask5network.utils.DEFAULT_PAGE_SIZE
-import com.example.androidtask5network.utils.TAG
 import kotlinx.coroutines.launch
+
+const val DEFAULT_PAGE_SIZE = 20
+const val TAG = "my_tag"
 
 class MainViewModel : ViewModel() {
 

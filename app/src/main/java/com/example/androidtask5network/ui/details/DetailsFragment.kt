@@ -23,7 +23,7 @@ import com.example.androidtask5network.data.model.Cat
 import com.example.androidtask5network.databinding.FragmentDetailsBinding
 import com.example.androidtask5network.presetnation.MainViewModel
 import com.example.androidtask5network.presetnation.MainViewModelFactory
-import com.example.androidtask5network.utils.TAG
+import com.example.androidtask5network.presetnation.TAG
 import com.example.androidtask5network.utils.sdk29AndUp
 import java.io.IOException
 
