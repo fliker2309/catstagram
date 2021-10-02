@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -23,7 +24,6 @@ import com.example.androidtask5network.databinding.FragmentCatsBinding
 import com.example.androidtask5network.presetnation.MainViewModel
 import com.example.androidtask5network.presetnation.MainViewModelFactory
 import com.example.androidtask5network.ui.mainfragment.adapter.CatsAdapter
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -43,31 +43,38 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCatsBinding.inflate(inflater, container, false)
-        /*  postponeEnterTransition()*/
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        val adapter = CatsAdapter {
-            val action = MainFragmentDirections.actionMainFragmentToDetailsFragment(it.id)
-            this.findNavController().navigate(action)
-        }
         if (!isNetworkAvailable(requireContext())) {
             binding.catsRecyclerView.isVisible = false
             binding.errorImage.isVisible = true
             binding.retryButton.isVisible = true
-           /* Snackbar.make(
-                binding.root,
-                "Please, turn on Internet connection and retry",
-                Snackbar.LENGTH_LONG
-            ).show()*/
+            binding.retryButton.setOnClickListener {
+                if (isNetworkAvailable(requireContext())) {
+                    initView()
+                } else Toast.makeText(
+                    requireContext(),
+                    "No internet connection",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         } else {
-            binding.catsRecyclerView.isVisible = true
-            binding.errorImage.isVisible = false
-            binding.retryButton.isVisible = false
+            initView()
         }
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun initView() {
+        val adapter = CatsAdapter {
+            val action = MainFragmentDirections.actionMainFragmentToDetailsFragment(it.id)
+            this.findNavController().navigate(action)
+        }
+
+        binding.catsRecyclerView.isVisible = true
+        binding.errorImage.isVisible = false
+        binding.retryButton.isVisible = false
 
         binding.apply {
             catsRecyclerView.adapter = adapter
@@ -93,8 +100,6 @@ class MainFragment : Fragment() {
         adapter.addLoadStateListener { state: CombinedLoadStates ->
             binding.catsRecyclerView.isVisible = state.refresh != LoadState.Loading
             binding.progress.isVisible = state.refresh == LoadState.Loading
-
-            super.onViewCreated(view, savedInstanceState)
         }
     }
 
