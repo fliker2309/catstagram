@@ -37,6 +37,11 @@ class MainFragment : Fragment() {
         MainViewModelFactory()
     }
 
+    private val adapter = CatsAdapter {
+        val action = MainFragmentDirections.actionMainFragmentToDetailsFragment(it.id)
+        this.findNavController().navigate(action)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,43 +52,49 @@ class MainFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        if (!isNetworkAvailable(requireContext())) {
-            binding.catsRecyclerView.isVisible = false
-            binding.errorImage.isVisible = true
-            binding.retryButton.isVisible = true
-            binding.retryButton.setOnClickListener {
-                if (isNetworkAvailable(requireContext())) {
+        super.onViewCreated(view, savedInstanceState)
+        if (isNetworkAvailable()) {
+            initView()
+            initObservers()
+        } else {
+            showNoInternetUi()
+        }
+    }
+
+    private fun showNoInternetUi() {
+        binding.apply {
+            catsRecyclerView.isVisible = false
+            errorImage.isVisible = true
+            retryButton.isVisible = true
+            retryButton.setOnClickListener {
+                if (isNetworkAvailable()) {
                     initView()
+                    initObservers()
                 } else Toast.makeText(
                     requireContext(),
-                    "No internet connection",
+                    "No Internet connection",
                     Toast.LENGTH_SHORT
                 ).show()
             }
-        } else {
-            initView()
         }
-        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun initView() {
-        val adapter = CatsAdapter {
-            val action = MainFragmentDirections.actionMainFragmentToDetailsFragment(it.id)
-            this.findNavController().navigate(action)
-        }
-
-        binding.catsRecyclerView.isVisible = true
-        binding.errorImage.isVisible = false
-        binding.retryButton.isVisible = false
-
         binding.apply {
+            catsRecyclerView.isVisible = true
+            errorImage.isVisible = false
+            retryButton.isVisible = false
             catsRecyclerView.adapter = adapter
             catsRecyclerView.layoutManager =
                 StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-            binding.retryButton.setOnClickListener {
-            }
         }
+        adapter.addLoadStateListener { state: CombinedLoadStates ->
+            binding.catsRecyclerView.isVisible = state.refresh != LoadState.Loading
+            binding.progress.isVisible = state.refresh == LoadState.Loading
+        }
+    }
 
+    private fun initObservers() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.flow.collectLatest { pagingData: PagingData<Cat> ->
                 adapter.submitData(pagingData)
@@ -96,15 +107,10 @@ class MainFragment : Fragment() {
                 }
             }
         }
-
-        adapter.addLoadStateListener { state: CombinedLoadStates ->
-            binding.catsRecyclerView.isVisible = state.refresh != LoadState.Loading
-            binding.progress.isVisible = state.refresh == LoadState.Loading
-        }
     }
 
-    private fun isNetworkAvailable(context: Context?): Boolean {
-        if (context == null) return false
+    private fun isNetworkAvailable(): Boolean {
+        val context = requireContext()
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -116,9 +122,6 @@ class MainFragment : Fragment() {
                         return true
                     }
                     capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
-                        return true
-                    }
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
                         return true
                     }
                 }

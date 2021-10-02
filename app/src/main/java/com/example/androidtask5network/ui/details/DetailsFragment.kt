@@ -22,7 +22,6 @@ import com.example.androidtask5network.R
 import com.example.androidtask5network.data.model.Cat
 import com.example.androidtask5network.databinding.FragmentDetailsBinding
 import com.example.androidtask5network.presetnation.MainViewModel
-import com.example.androidtask5network.presetnation.MainViewModelFactory
 import com.example.androidtask5network.presetnation.TAG
 import com.example.androidtask5network.utils.sdk29AndUp
 import java.io.IOException
@@ -33,9 +32,7 @@ class DetailsFragment : Fragment() {
     private val binding: FragmentDetailsBinding
         get() = requireNotNull(_binding)
     private val args by navArgs<DetailsFragmentArgs>()
-    private val viewModel: MainViewModel by viewModels {
-        MainViewModelFactory()
-    }
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,15 +45,14 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
-
         binding.apply {
             val catId = args.imageId
             viewModel.getCat(catId)
             viewModel.cat.observe(viewLifecycleOwner) {
                 Log.d(TAG, "Single cat url: ${it.url}")
-                setImage(binding.cropCatImage, it)
-                binding.urlTextView.text = getString(R.string.cat_url, it.url)
+                setHasOptionsMenu(true)
+                setImage(cropCatImage, it)
+                urlTextView.text = getString(R.string.cat_url, it.url)
             }
         }
     }
