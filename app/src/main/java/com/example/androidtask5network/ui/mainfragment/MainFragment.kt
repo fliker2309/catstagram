@@ -1,5 +1,9 @@
 package com.example.androidtask5network.ui.mainfragment
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -50,6 +54,20 @@ class MainFragment : Fragment() {
             val action = MainFragmentDirections.actionMainFragmentToDetailsFragment(it.id)
             this.findNavController().navigate(action)
         }
+        if (!isNetworkAvailable(requireContext())) {
+            binding.catsRecyclerView.isVisible = false
+            binding.errorImage.isVisible = true
+            binding.retryButton.isVisible = true
+           /* Snackbar.make(
+                binding.root,
+                "Please, turn on Internet connection and retry",
+                Snackbar.LENGTH_LONG
+            ).show()*/
+        } else {
+            binding.catsRecyclerView.isVisible = true
+            binding.errorImage.isVisible = false
+            binding.retryButton.isVisible = false
+        }
 
         binding.apply {
             catsRecyclerView.adapter = adapter
@@ -73,28 +91,40 @@ class MainFragment : Fragment() {
         }
 
         adapter.addLoadStateListener { state: CombinedLoadStates ->
-            val refreshState = state.refresh
-
-            when (state.refresh) {
-                LoadState.Loading ->TODO()
-                LoadState.Error -> TODO()
-
-            }
             binding.catsRecyclerView.isVisible = state.refresh != LoadState.Loading
             binding.progress.isVisible = state.refresh == LoadState.Loading
-            if (refreshState is LoadState.Error) {
-                binding.catsRecyclerView.isVisible = false
-                binding.errorImage.isVisible = true
-                binding.retryButton.isVisible = true
-                Snackbar.make(
-                    binding.root,
-                    "Please, turn on Internet connection and retry",
-                    Snackbar.LENGTH_LONG
-                ).show()
+
+            super.onViewCreated(view, savedInstanceState)
+        }
+    }
+
+    private fun isNetworkAvailable(context: Context?): Boolean {
+        if (context == null) return false
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            if (capabilities != null) {
+                when {
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
+                        return true
+                    }
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
+                        return true
+                    }
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
+                        return true
+                    }
+                }
+            }
+        } else {
+            val activeNetworkInfo = connectivityManager.activeNetworkInfo
+            if (activeNetworkInfo != null && activeNetworkInfo.isConnected) {
+                return true
             }
         }
-
-        super.onViewCreated(view, savedInstanceState)
+        return false
     }
 
     override fun onDestroy() {
