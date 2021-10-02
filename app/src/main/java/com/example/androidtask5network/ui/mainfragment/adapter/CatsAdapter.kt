@@ -6,6 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.example.androidtask5network.R
 import com.example.androidtask5network.data.model.Cat
 import com.example.androidtask5network.databinding.RecyclerItemBinding
@@ -34,6 +35,9 @@ class CatsAdapter(private val cardListener: (Cat) -> Unit) :
                 catImage.load(cat.url) {
                     placeholder(R.drawable.ic_placeholder)
                     error(R.drawable.ic_error)
+                    crossfade(true)
+                    crossfade(500)
+                    transformations(RoundedCornersTransformation(20f))
                 }
             }
         }

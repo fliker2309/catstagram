@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +19,7 @@ import com.example.androidtask5network.databinding.FragmentCatsBinding
 import com.example.androidtask5network.presetnation.MainViewModel
 import com.example.androidtask5network.presetnation.MainViewModelFactory
 import com.example.androidtask5network.ui.mainfragment.adapter.CatsAdapter
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -52,6 +55,8 @@ class MainFragment : Fragment() {
             catsRecyclerView.adapter = adapter
             catsRecyclerView.layoutManager =
                 StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+            binding.retryButton.setOnClickListener {
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -64,6 +69,28 @@ class MainFragment : Fragment() {
                 if (it.append is LoadState.Error) {
                     adapter.retry()
                 }
+            }
+        }
+
+        adapter.addLoadStateListener { state: CombinedLoadStates ->
+            val refreshState = state.refresh
+
+            when (state.refresh) {
+                LoadState.Loading ->TODO()
+                LoadState.Error -> TODO()
+
+            }
+            binding.catsRecyclerView.isVisible = state.refresh != LoadState.Loading
+            binding.progress.isVisible = state.refresh == LoadState.Loading
+            if (refreshState is LoadState.Error) {
+                binding.catsRecyclerView.isVisible = false
+                binding.errorImage.isVisible = true
+                binding.retryButton.isVisible = true
+                Snackbar.make(
+                    binding.root,
+                    "Please, turn on Internet connection and retry",
+                    Snackbar.LENGTH_LONG
+                ).show()
             }
         }
 

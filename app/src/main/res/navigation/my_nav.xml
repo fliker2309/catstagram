@@ -10,7 +10,11 @@
         android:label="All Kitties" >
         <action
             android:id="@+id/action_mainFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@animator/flip_left_in"
+            app:exitAnim="@animator/flip_left_out"
+            app:popEnterAnim="@animator/flip_right_in"
+            app:popExitAnim="@animator/flip_right_out" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
