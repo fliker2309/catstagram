@@ -3,8 +3,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-
     }
 }
-rootProject.name = 'android.task5.network'
-include ':app'
+rootProject.name = "android.task5.network"
+include (":app")
