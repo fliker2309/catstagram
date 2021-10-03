@@ -10,6 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.create
 
 private const val BASE_URL = "https://api.thecatapi.com/v1/"
+
 @ExperimentalSerializationApi
 object RetrofitConfig {
 
