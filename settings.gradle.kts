@@ -6,4 +6,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "android.task5.network"
-include (":app")
+include(":app")
