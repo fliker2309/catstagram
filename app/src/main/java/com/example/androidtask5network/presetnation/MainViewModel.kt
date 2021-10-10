@@ -29,6 +29,8 @@ class MainViewModel : ViewModel() {
 
     fun getCat(id: String) {
         viewModelScope.launch {
+            // Лучше обработать низкоуровневые ошибки на Data слое, а во ViewModel вернуть модель,
+            // или объект специального класса ошибки.
             try {
                 val singleCat = theCatApiService.getCatById(id)
                 _cat.value = singleCat.toCat()

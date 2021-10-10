@@ -92,6 +92,7 @@ class DetailsFragment : Fragment() {
         }
     }
 
+    // Возвращаемое значение не проверяется.
     private fun saveImageToExternalStorage(cat: Cat, bitmap: Bitmap): Boolean {
         val resolver = context?.applicationContext?.contentResolver
         val imageCollection = sdk29AndUp {
@@ -101,10 +102,11 @@ class DetailsFragment : Fragment() {
         } ?: MediaStore.Images.Media.EXTERNAL_CONTENT_URI
 
         val contentValues = ContentValues().apply {
-            put(MediaStore.Images.Media.DISPLAY_NAME, "${cat.id}.jpeg")
+            put(MediaStore.Images.Media.DISPLAY_NAME, "${cat.id}.jpeg")// расширение можно вынести в константу.
             put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
         }
         return try {
+            // Блок плохо читается. Две вложенные scope функции, функция как отрицательное условие и элвис оператор.
             resolver?.insert(imageCollection, contentValues)?.also { uri ->
                 resolver.openOutputStream(uri).use { outputStream ->
                     if (!bitmap.compress(Bitmap.CompressFormat.JPEG, 95, outputStream)) {

@@ -34,6 +34,7 @@ class MainFragment : Fragment() {
         get() = requireNotNull(_binding)
 
     private val viewModel: MainViewModel by viewModels {
+        // В данном случае можно воспользоваться делегатом activityViewModels и не создавать свою фабрику.
         MainViewModelFactory()
     }
 
@@ -51,6 +52,7 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
+    // Колбэки жизненного цикла обычно размещают по порядку.
     override fun onDestroy() {
         _binding = null
         super.onDestroy()

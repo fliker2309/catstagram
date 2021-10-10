@@ -14,6 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Не вижу необходимости в guideLine. -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/margin_bottom_guideline"
         android:layout_width="0dp"
