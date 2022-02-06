@@ -41,13 +41,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Текст нужно поместить в ресурсы. -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/retry_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="retry"
+        android:text="@string/retry"
         android:visibility="gone"
         app:icon="@drawable/ic_retry"
         app:layout_constraintEnd_toEndOf="@id/error_image"

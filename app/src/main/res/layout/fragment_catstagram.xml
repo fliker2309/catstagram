@@ -34,8 +34,8 @@
         android:layout_marginTop="@dimen/card_dimen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guidelineTop"
-        tools:listItem="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@id/appNameTV"
+        tools:listItem="@layout/recycler_cat_item" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineBottom"

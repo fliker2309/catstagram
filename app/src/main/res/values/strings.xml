@@ -3,4 +3,5 @@
     <string name="save">SAVE</string>
     <string name="cat_id"> Cat Photo id: %s</string>
     <string name="cat_url"> Cat Photo url: %s</string>
+    <string name="retry">retry</string>
 </resources>

@@ -52,12 +52,6 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
-    // Колбэки жизненного цикла обычно размещают по порядку.
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (isNetworkAvailable()) {
@@ -66,6 +60,11 @@ class MainFragment : Fragment() {
         } else {
             showNoInternetUi()
         }
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 
     private fun showNoInternetUi() {
