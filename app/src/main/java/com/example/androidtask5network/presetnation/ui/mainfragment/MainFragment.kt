@@ -1,4 +1,4 @@
-package com.example.androidtask5network.ui.mainfragment
+package com.example.androidtask5network.presetnation.ui.mainfragment
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
@@ -22,8 +22,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.androidtask5network.data.model.Cat
 import com.example.androidtask5network.databinding.FragmentCatsBinding
 import com.example.androidtask5network.presetnation.MainViewModel
-import com.example.androidtask5network.presetnation.MainViewModelFactory
-import com.example.androidtask5network.ui.mainfragment.adapter.CatsAdapter
+import com.example.androidtask5network.presetnation.ui.mainfragment.adapter.CatsAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -33,10 +32,7 @@ class MainFragment : Fragment() {
     private val binding: FragmentCatsBinding
         get() = requireNotNull(_binding)
 
-    private val viewModel: MainViewModel by viewModels {
-        // В данном случае можно воспользоваться делегатом activityViewModels и не создавать свою фабрику.
-        MainViewModelFactory()
-    }
+    private val viewModel: MainViewModel by activityViewModels()
 
     private val adapter = CatsAdapter {
         val action = MainFragmentDirections.actionMainFragmentToDetailsFragment(it.id)

@@ -1,4 +1,4 @@
-package com.example.androidtask5network.ui.catstagram.adapter
+package com.example.androidtask5network.presetnation.ui.catstagram.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

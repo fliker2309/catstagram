@@ -1,7 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.4.21"
+    id("dagger.hilt.android.plugin")
     kotlin("android")
+    kotlin("kapt")
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -57,7 +59,7 @@ dependencies {
 
     // images
     implementation("io.coil-kt:coil:1.3.2")
-    implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 
     // lifecycle
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
@@ -70,6 +72,10 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
+
+    // dependency injection
+    implementation("com.google.dagger:hilt-android:2.38.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
 
     // paging
     implementation("androidx.paging:paging-runtime-ktx:3.1.0")

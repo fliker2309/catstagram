@@ -1,4 +1,4 @@
-package com.example.androidtask5network.ui.mainfragment.adapter
+package com.example.androidtask5network.presetnation.ui.mainfragment.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

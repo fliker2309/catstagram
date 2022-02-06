@@ -1,4 +1,4 @@
-package com.example.androidtask5network.ui.details
+package com.example.androidtask5network.presetnation.ui.details
 
 import android.content.ContentValues
 import android.graphics.Bitmap
