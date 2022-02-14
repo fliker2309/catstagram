@@ -60,7 +60,7 @@ dependencies {
     // images
     implementation("io.coil-kt:coil:1.3.2")
     implementation("de.hdodenhof:circleimageview:3.1.0")
-    implementation ("io.github.informramiz:simplecircleimageview:1.2.0")
+
 
     // lifecycle
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")

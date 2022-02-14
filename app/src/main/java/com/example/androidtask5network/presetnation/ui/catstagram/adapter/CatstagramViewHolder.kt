@@ -14,15 +14,14 @@ class CatstagramViewHolder(
 
     fun bind(cat: Cat) {
         with(binding) {
-            profileIV.load(cat.url) {
-                placeholder(R.drawable.ic_placeholder)
-                error(R.drawable.ic_error)
+            profileIV.load(R.drawable.kat) {
+                placeholder(R.drawable.kat)
+                error(R.drawable.kat)
                 crossfade(true)
                 crossfade(500)
-                transformations(RoundedCornersTransformation(20f))
             }
             mainIV.load(cat.url) {
-                placeholder(R.drawable.ic_placeholder)
+                placeholder(R.drawable.kat)
                 error(R.drawable.ic_error)
                 crossfade(true)
                 crossfade(500)
