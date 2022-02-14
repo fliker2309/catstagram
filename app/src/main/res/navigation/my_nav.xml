@@ -2,29 +2,10 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/my_nav"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/catstagramFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.example.androidtask5network.presetnation.ui.mainfragment.MainFragment"
-        android:label="All Kitties" >
-        <action
-            android:id="@+id/action_mainFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment"
-            app:enterAnim="@animator/flip_left_in"
-            app:exitAnim="@animator/flip_left_out"
-            app:popEnterAnim="@animator/flip_right_in"
-            app:popExitAnim="@animator/flip_right_out" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailsFragment"
-        android:name="com.example.androidtask5network.presetnation.ui.details.DetailsFragment"
-        android:label="Simple Kitty" >
-        <action
-            android:id="@+id/action_detailsFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-        <argument
-            android:name="imageId"
-            app:argType="string" />
-    </fragment>
+        android:id="@+id/catstagramFragment"
+        android:name="com.example.androidtask5network.presetnation.ui.catstagram.CatstagramFragment"
+        android:label="CatstagramFragment" />
 </navigation>

@@ -1,3 +1,4 @@
+/*
 package com.example.androidtask5network.presetnation.ui.mainfragment
 
 import android.content.Context
@@ -137,3 +138,4 @@ class MainFragment : Fragment() {
         return false
     }
 }
+*/

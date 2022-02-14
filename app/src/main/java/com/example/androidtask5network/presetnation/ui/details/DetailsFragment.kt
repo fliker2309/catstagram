@@ -1,3 +1,4 @@
+/*
 package com.example.androidtask5network.presetnation.ui.details
 
 import android.content.ContentValues
@@ -121,3 +122,4 @@ class DetailsFragment : Fragment() {
         }
     }
 }
+*/
