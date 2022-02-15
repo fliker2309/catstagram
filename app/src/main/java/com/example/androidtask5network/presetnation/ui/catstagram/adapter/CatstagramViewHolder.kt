@@ -9,7 +9,7 @@ import com.example.androidtask5network.data.model.Cat
 import com.example.androidtask5network.databinding.RecyclerCatItemBinding
 
 class CatstagramViewHolder(
-    private val binding: RecyclerCatItemBinding
+     val binding: RecyclerCatItemBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(cat: Cat) {

@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/my_nav"
     app:startDestination="@id/catstagramFragment">
-
     <fragment
         android:id="@+id/catstagramFragment"
         android:name="com.example.androidtask5network.presetnation.ui.catstagram.CatstagramFragment"

@@ -58,4 +58,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainIV" />
 
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="likeBtn,downloadBtn"
+        app:barrierDirection="bottom"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="6dp"
+        app:layout_constraintTop_toBottomOf="@id/barrier"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
