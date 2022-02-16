@@ -32,7 +32,9 @@ class DetailsFragment : Fragment() {
     private var _binding: FragmentDetailsBinding? = null
     private val binding: FragmentDetailsBinding
         get() = requireNotNull(_binding)
-    private val args by navArgs<DetailsFragmentArgs>()
+ */
+/*   private val args by navArgs<DetailsFragmentArgs>()*//*
+
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
@@ -103,7 +105,7 @@ class DetailsFragment : Fragment() {
         } ?: MediaStore.Images.Media.EXTERNAL_CONTENT_URI
 
         val contentValues = ContentValues().apply {
-            put(MediaStore.Images.Media.DISPLAY_NAME, "${cat.id}.jpeg")// расширение можно вынести в константу.
+            put(MediaStore.Images.Media.DISPLAY_NAME, "${cat.id}.jpeg")// расширение можно вынести в константу.+
             put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
         }
         return try {

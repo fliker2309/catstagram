@@ -1,6 +1,9 @@
 package com.example.androidtask5network.presetnation.ui.catstagram
 
+import android.content.ContentValues
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +14,19 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.androidtask5network.R
 import com.example.androidtask5network.data.model.Cat
 import com.example.androidtask5network.databinding.FragmentCatstagramBinding
 import com.example.androidtask5network.presetnation.MainViewModel
 import com.example.androidtask5network.presetnation.ui.catstagram.adapter.CatActionListener
 import com.example.androidtask5network.presetnation.ui.catstagram.adapter.CatstagramAdapter
+import com.example.androidtask5network.utils.sdk29AndUp
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.io.IOException
+
+private const val IMAGE_FORMAT = ".jpeg"
+private const val MIME_TYPE = "image/jpeg"
 
 class CatstagramFragment : Fragment() {
 
@@ -37,7 +46,9 @@ class CatstagramFragment : Fragment() {
         _binding = FragmentCatstagramBinding.inflate(inflater, container, false)
         adapter = CatstagramAdapter(object : CatActionListener {
             override fun onCatDownload(cat: Cat) {
+                val myCat = viewModel.cat.value!!
 
+                saveImage(myCat)
                 Toast.makeText(context, "onDownloadClick ${cat.id}", Toast.LENGTH_SHORT).show()
             }
 
@@ -84,6 +95,24 @@ class CatstagramFragment : Fragment() {
         }
     }
 
+    private fun saveImage(cat: Cat) {
+        val resolver = context?.applicationContext?.contentResolver
+        val imageCollection = sdk29AndUp {
+            MediaStore.Images.Media.getContentUri(
+                MediaStore.VOLUME_EXTERNAL_PRIMARY
+            )
+        } ?: MediaStore.Images.Media.EXTERNAL_CONTENT_URI
 
-    /* private fun saveImage(cat: Cat, bitmap: Bitmap) {}*/
+        val contentValues = ContentValues().apply {
+            put(MediaStore.Images.Media.DISPLAY_NAME, "${cat.id}.$IMAGE_FORMAT")
+            put(MediaStore.Images.Media.MIME_TYPE, MIME_TYPE)
+        }
+        try {
+            resolver?.insert(imageCollection, contentValues)?.also { uri ->
+                resolver.openOutputStream(uri)
+            } ?: throw IOException("Couldn't save cat")
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
 }
