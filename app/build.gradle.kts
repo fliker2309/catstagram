@@ -53,6 +53,11 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
 
+    //room
+    implementation("androidx.room:room-runtime:2.4.2")
+    implementation ("androidx.room:room-paging:2.5.0-alpha01")
+    annotationProcessor ("androidx.room:room-compiler:2.4.2")
+
     // navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.4.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.4.0")

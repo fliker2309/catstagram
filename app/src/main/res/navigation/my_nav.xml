@@ -5,6 +5,6 @@
     app:startDestination="@id/catstagramFragment">
     <fragment
         android:id="@+id/catstagramFragment"
-        android:name="com.example.androidtask5network.presetnation.ui.catstagram.CatstagramFragment"
+        android:name="com.example.androidtask5network.feature_catlist.presetnation.ui.catstagram.CatstagramFragment"
         android:label="CatstagramFragment" />
 </navigation>
