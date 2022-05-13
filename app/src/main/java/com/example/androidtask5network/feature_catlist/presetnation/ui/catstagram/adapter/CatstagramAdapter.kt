@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import com.example.androidtask5network.R
-import com.example.androidtask5network.data.model.Cat
+import com.example.androidtask5network.feature_catlist.data.model.Cat
 import com.example.androidtask5network.databinding.RecyclerCatItemBinding
 
 class CatstagramAdapter(

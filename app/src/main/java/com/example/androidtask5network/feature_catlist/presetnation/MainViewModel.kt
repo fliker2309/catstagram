@@ -8,10 +8,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import com.example.androidtask5network.data.model.Cat
-import com.example.androidtask5network.data.network.CatsPagingSource
-import com.example.androidtask5network.data.network.RetrofitConfig.theCatApiService
-import com.example.androidtask5network.data.toCat
+import com.example.androidtask5network.feature_catlist.data.model.Cat
+import com.example.androidtask5network.feature_catlist.data.network.CatsPagingSource
+import com.example.androidtask5network.feature_catlist.data.network.RetrofitConfig.theCatApiService
+import com.example.androidtask5network.feature_catlist.data.toCat
 import kotlinx.coroutines.launch
 
 const val DEFAULT_PAGE_SIZE = 20

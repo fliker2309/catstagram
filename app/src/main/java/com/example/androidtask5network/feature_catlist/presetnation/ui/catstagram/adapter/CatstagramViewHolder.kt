@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.example.androidtask5network.R
-import com.example.androidtask5network.data.model.Cat
+import com.example.androidtask5network.feature_catlist.data.model.Cat
 import com.example.androidtask5network.databinding.RecyclerCatItemBinding
 
 class CatstagramViewHolder(

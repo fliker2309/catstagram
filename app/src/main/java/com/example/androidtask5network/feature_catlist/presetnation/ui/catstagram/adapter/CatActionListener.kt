@@ -1,6 +1,6 @@
 package com.example.androidtask5network.presetnation.ui.catstagram.adapter
 
-import com.example.androidtask5network.data.model.Cat
+import com.example.androidtask5network.feature_catlist.data.model.Cat
 
 interface CatActionListener {
 

@@ -15,7 +15,7 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.androidtask5network.R
-import com.example.androidtask5network.data.model.Cat
+import com.example.androidtask5network.feature_catlist.data.model.Cat
 import com.example.androidtask5network.databinding.FragmentCatstagramBinding
 import com.example.androidtask5network.presetnation.MainViewModel
 import com.example.androidtask5network.presetnation.ui.catstagram.adapter.CatActionListener
