@@ -1,7 +1,7 @@
 package com.example.androidtask5network.di
 
-import com.example.androidtask5network.feature_catlist.domain.usecase.GetCatsUseCase
-import com.example.androidtask5network.feature_catlist.domain.usecase.GetCatsUseCaseImpl
+import com.example.androidtask5network.domain.usecase.GetCatsUseCase
+import com.example.androidtask5network.domain.usecase.GetCatsUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

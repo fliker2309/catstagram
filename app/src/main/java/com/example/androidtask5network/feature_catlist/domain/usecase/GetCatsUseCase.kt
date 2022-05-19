@@ -1,7 +1,7 @@
 package com.example.androidtask5network.domain.usecase
 
 import com.example.androidtask5network.feature_catlist.data.network.model.CatResponse
-import com.example.androidtask5network.domain.repository.CatsRepository
+import com.example.androidtask5network.feature_catlist.domain.repository.CatsRepository
 import javax.inject.Inject
 
 interface GetCatsUseCase {

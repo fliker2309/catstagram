@@ -1,4 +1,4 @@
-package com.example.androidtask5network.data.network.model
+package com.example.androidtask5network.feature_catlist.data.network.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

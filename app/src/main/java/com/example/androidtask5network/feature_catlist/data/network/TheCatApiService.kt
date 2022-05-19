@@ -1,7 +1,7 @@
-package com.example.androidtask5network.data.network
+package com.example.androidtask5network.feature_catlist.data.network
 
-import com.example.androidtask5network.data.network.model.CatResponse
-import com.example.androidtask5network.presetnation.DEFAULT_PAGE_SIZE
+import com.example.androidtask5network.feature_catlist.data.network.model.CatResponse
+import com.example.androidtask5network.utils.DEFAULT_PAGE_SIZE
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

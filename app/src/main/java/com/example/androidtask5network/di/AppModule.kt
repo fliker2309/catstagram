@@ -2,6 +2,7 @@ package com.example.androidtask5network.di
 
 import com.example.androidtask5network.feature_catlist.data.network.RetrofitConfig
 import com.example.androidtask5network.feature_catlist.data.network.TheCatApiService
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

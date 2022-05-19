@@ -1,5 +1,6 @@
-package com.example.androidtask5network.data.network
+package com.example.androidtask5network.feature_catlist.data.network
 
+import com.example.androidtask5network.data.network.AuthInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json

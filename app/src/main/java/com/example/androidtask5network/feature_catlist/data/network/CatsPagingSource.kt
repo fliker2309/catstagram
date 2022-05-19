@@ -1,13 +1,12 @@
-package com.example.androidtask5network.data.network
+package com.example.androidtask5network.feature_catlist.data.network
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.androidtask5network.data.model.Cat
-import com.example.androidtask5network.data.toCat
+import com.example.androidtask5network.feature_catlist.data.model.Cat
+import com.example.androidtask5network.feature_catlist.data.toCat
+import com.example.androidtask5network.utils.CATS_STARTING_PAGE_INDEX
 import retrofit2.HttpException
 import java.io.IOException
-
-private const val CATS_STARTING_PAGE_INDEX = 1
 
 class CatsPagingSource(
     private val catsService: TheCatApiService

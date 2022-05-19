@@ -14,10 +14,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.androidtask5network.R
+
 import com.example.androidtask5network.feature_catlist.data.model.Cat
-import com.example.androidtask5network.databinding.FragmentCatstagramBinding
-import com.example.androidtask5network.presetnation.MainViewModel
+import com.example.androidtask5network.feature_catlist.presetnation.MainViewModel
+
 import com.example.androidtask5network.presetnation.ui.catstagram.adapter.CatActionListener
 import com.example.androidtask5network.presetnation.ui.catstagram.adapter.CatstagramAdapter
 import com.example.androidtask5network.utils.sdk29AndUp
@@ -30,7 +30,7 @@ private const val MIME_TYPE = "image/jpeg"
 
 class CatstagramFragment : Fragment() {
 
-    private var _binding: FragmentCatstagramBinding? = null
+    private var _binding: Frag? = null
     private val binding: FragmentCatstagramBinding
         get() = requireNotNull(_binding)
 

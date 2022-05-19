@@ -1,7 +1,7 @@
-package com.example.androidtask5network.data
+package com.example.androidtask5network.feature_catlist.data
 
-import com.example.androidtask5network.data.model.Cat
-import com.example.androidtask5network.data.network.model.CatResponse
+import com.example.androidtask5network.feature_catlist.data.network.model.CatResponse
+import com.example.androidtask5network.feature_catlist.data.model.Cat
 
 internal fun CatResponse.toCat(): Cat {
     return Cat(
