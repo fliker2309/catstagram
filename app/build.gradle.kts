@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("kotlin-android-extensions")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.4.21"
     id("dagger.hilt.android.plugin")
     kotlin("android")
@@ -8,7 +9,7 @@ plugins {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = 32
 
     defaultConfig {
         applicationId = "com.example.catstagtam"
@@ -42,7 +43,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    namespace = "com.example.androidtask5network"
+    namespace = "com.example.catstagram"
 }
 
 dependencies {

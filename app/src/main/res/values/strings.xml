@@ -4,8 +4,6 @@
     <string name="cat_id"> Cat Photo id: %s</string>
     <string name="cat_url"> Cat Photo url: %s</string>
     <string name="retry">retry</string>
-    <string name="list">Cats List</string>
-    <string name="savedCats">Saved Cats</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
