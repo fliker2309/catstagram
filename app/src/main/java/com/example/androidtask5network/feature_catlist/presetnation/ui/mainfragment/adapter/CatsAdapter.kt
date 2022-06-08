@@ -9,14 +9,14 @@ import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.example.androidtask5network.R
 import com.example.androidtask5network.feature_catlist.data.model.Cat
-import com.example.androidtask5network.databinding.RecyclerItemBinding
+import com.example.androidtask5network.databinding.RecyclerCatItemBinding
 
 class CatsAdapter(private val cardListener: (Cat) -> Unit) :
     PagingDataAdapter<Cat, CatsAdapter.CatsViewHolder>(CatDiffItemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatsViewHolder {
         val viewHolder =
-            CatsViewHolder(RecyclerItemBinding.inflate(LayoutInflater.from(parent.context)))
+            CatsViewHolder(RecyclerCatItemBinding.inflate(LayoutInflater.from(parent.context)))
         viewHolder.itemView.setOnClickListener {
             val position = viewHolder.bindingAdapterPosition
             getItem(position)?.let { position -> cardListener(position) }
@@ -28,7 +28,7 @@ class CatsAdapter(private val cardListener: (Cat) -> Unit) :
         getItem(position)?.let { holder.bind(it) }
     }
 
-    class CatsViewHolder(private val binding: RecyclerItemBinding) :
+    class CatsViewHolder(private val binding: RecyclerCatItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(cat: Cat) {
             with(binding) {
