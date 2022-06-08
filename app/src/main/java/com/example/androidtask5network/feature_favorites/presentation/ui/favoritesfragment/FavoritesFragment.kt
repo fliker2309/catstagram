@@ -1,4 +1,4 @@
-package com.example.androidtask5network.feature_catlist.presetnation.ui.mainfragment
+package com.example.androidtask5network.feature_favorites.presentation.ui.favoritesfragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.androidtask5network.R
 
-class MainFragment : Fragment() {
+class FavoritesFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -15,6 +15,6 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_favorites, container, false)
     }
 }

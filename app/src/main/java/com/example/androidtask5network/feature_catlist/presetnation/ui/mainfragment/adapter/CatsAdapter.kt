@@ -1,3 +1,4 @@
+/*
 package com.example.androidtask5network.presetnation.ui.mainfragment.adapter
 
 import android.view.LayoutInflater
@@ -53,3 +54,4 @@ class CatsAdapter(private val cardListener: (Cat) -> Unit) :
         }
     }
 }
+*/
