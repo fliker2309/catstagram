@@ -5,5 +5,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "android.task5.network"
+rootProject.name = "catstagram"
 include(":app")
