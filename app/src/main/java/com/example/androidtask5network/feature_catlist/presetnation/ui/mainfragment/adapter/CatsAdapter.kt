@@ -32,7 +32,7 @@ class CatsAdapter(private val cardListener: (Cat) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(cat: Cat) {
             with(binding) {
-                catImage.load(cat.url) {
+                mainIV.load(cat.url) {
                     placeholder(R.drawable.ic_placeholder)
                     error(R.drawable.ic_error)
                     crossfade(true)

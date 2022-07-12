@@ -1,4 +1,3 @@
-/*
 package com.example.androidtask5network.presetnation.ui.mainfragment
 
 import android.content.Context
@@ -14,16 +13,14 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.androidtask5network.data.model.Cat
 import com.example.androidtask5network.databinding.FragmentCatsBinding
-import com.example.androidtask5network.presetnation.MainViewModel
-import com.example.androidtask5network.presetnation.ui.mainfragment.adapter.CatsAdapter
+import com.example.androidtask5network.feature_catlist.data.model.Cat
+import com.example.androidtask5network.feature_catlist.presetnation.MainViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -35,10 +32,7 @@ class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels()
 
-    private val adapter = CatsAdapter {
-        val action = MainFragmentDirections.actionMainFragmentToDetailsFragment(it.id)
-        this.findNavController().navigate(action)
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,7 +60,7 @@ class MainFragment : Fragment() {
 
     private fun showNoInternetUi() {
         binding.apply {
-            catsRecyclerView.isVisible = false
+            catsRV.isVisible = false
             errorImage.isVisible = true
             retryButton.isVisible = true
             retryButton.setOnClickListener {
@@ -84,15 +78,15 @@ class MainFragment : Fragment() {
 
     private fun initView() {
         binding.apply {
-            catsRecyclerView.isVisible = true
+            catsRV.isVisible = true
             errorImage.isVisible = false
             retryButton.isVisible = false
-            catsRecyclerView.adapter = adapter
-            catsRecyclerView.layoutManager =
+            catsRV.adapter = adapter
+            catsRV.layoutManager =
                 StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         }
         adapter.addLoadStateListener { state: CombinedLoadStates ->
-            binding.catsRecyclerView.isVisible = state.refresh != LoadState.Loading
+            binding.catsRV.isVisible = state.refresh != LoadState.Loading
             binding.progress.isVisible = state.refresh == LoadState.Loading
         }
     }
@@ -138,4 +132,3 @@ class MainFragment : Fragment() {
         return false
     }
 }
-*/

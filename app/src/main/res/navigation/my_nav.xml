@@ -2,9 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/my_nav"
-    app:startDestination="@id/catstagramFragment">
+    app:startDestination="@id/mainFragment">
     <fragment
-        android:id="@+id/catstagramFragment"
-        android:name="com.example.androidtask5network.feature_catlist.presetnation.ui.catstagram.CatstagramFragment"
-        android:label="CatstagramFragment" />
+        android:id="@+id/mainFragment"
+        android:name="com.example.androidtask5network.presetnation.ui.mainfragment.MainFragment"
+        android:label="MainFragment" />
 </navigation>
